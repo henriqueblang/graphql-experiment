@@ -54,7 +54,7 @@ class Note(graphene.ObjectType):
     title = graphene.String()
     description = graphene.String()
 
-class QueryNote(graphene.ObjectType):
+class QueryNotes(graphene.ObjectType):
     notes = graphene.List(Note, id = graphene.Int())
 
     def resolve_notes(self, info, id=None):
@@ -111,4 +111,4 @@ insert_note("Aaah wait, it's on the tip of my tongue", "Jesus, I forgot")
 
 app = FastAPI()
  
-app.add_route("/notes", GraphQLApp(schema=graphene.Schema(query=QueryNote, mutation=Mutation)))
+app.add_route("/notes", GraphQLApp(schema=graphene.Schema(query=QueryNotes, mutation=Mutation)))
